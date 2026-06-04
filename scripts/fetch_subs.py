@@ -18,8 +18,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SUBDIR = ROOT / "data" / "subs"
 
-# 수집 대상 언어 (자동생성 포함). *-orig = 원어 자동자막
-DEFAULT_LANGS = "ko,en,ja,fr,it,ko-orig,en-orig,ja-orig,fr-orig,it-orig"
+# 수집 대상: 원어 자동자막(.*-orig)만 — 번역 자막까지 다 받으면 요청이 불어나 429 위험
+# (분석 AI는 어떤 언어든 읽으므로 원어가 가장 정확)
+DEFAULT_LANGS = ".*-orig,ko,en"
 
 
 def video_id(u: str) -> str:
@@ -56,6 +57,9 @@ def fetch(url: str, langs: str) -> Path | None:
     base = ["yt-dlp", "--no-warnings", "--skip-download",
             "--write-subs", "--write-auto-subs",
             "--sub-langs", langs, "--sub-format", "vtt",
+            # 429 (Too Many Requests) 대비: 요청 간격 + 지수 백오프 재시도
+            "--sleep-requests", "1", "--sleep-subtitles", "2",
+            "--retries", "3", "--retry-sleep", "http:exp=2:30",
             "-o", tmpl, f"https://www.youtube.com/watch?v={vid}"]
     # 자동자막은 android 클라이언트로만 노출되는 경우가 많음 → android 먼저, 실패 시 기본
     for extra in (["--extractor-args", "youtube:player_client=android"], []):
