@@ -1,0 +1,8 @@
+{
+  "kr": {"name": "한국",     "keywords": ["남자 패션", "남자 코디", "남자 스타일링"]},
+  "us": {"name": "미국",     "keywords": ["men's fashion", "mens outfit ideas", "men style tips"]},
+  "jp": {"name": "일본",     "keywords": ["メンズファッション", "メンズコーデ", "メンズ 着こなし"]},
+  "fr": {"name": "프랑스",   "keywords": ["mode homme", "tenue homme", "style homme"]},
+  "uk": {"name": "영국",     "keywords": ["british mens fashion", "mens smart casual uk", "men style guide uk"]},
+  "it": {"name": "이탈리아", "keywords": ["moda uomo", "outfit uomo", "stile uomo"]}
+}

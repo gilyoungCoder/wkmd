@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"printf '.secretkeys\\\\n*.secretkeys\\\\n.env*\\\\nnode_modules/\\\\n.DS_Store\\\\nThumbs.db\\\\n\\\\n# 수집 데이터·작업 결과물·고객 정보는 로컬 전용\\\\ndata/\\\\noutputs/\\\\n' > .gitignore && chmod +x scripts/setup.sh script...",
+  "error": "Exit code 1\n(eval):1: file exists: .gitignore",
+  "timestamp": "2026-06-04T11:20:27.079Z",
+  "retry_count": 1
+}

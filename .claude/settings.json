@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(python3 scripts/trend_scan.py:*)",
+      "Bash(python3 scripts/fetch_subs.py:*)",
+      "Bash(bash scripts/setup.sh:*)",
+      "Bash(yt-dlp:*)",
+      "Bash(mkdir:*)",
+      "Bash(git status:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "WebFetch(domain:wkmd.vercel.app)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:youtube.com)"
+    ],
+    "deny": [
+      "Read(./.secretkeys)",
+      "Read(./**/.secretkeys)",
+      "Read(./**/.env*)"
+    ]
+  }
+}

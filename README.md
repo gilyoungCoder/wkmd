@@ -29,11 +29,29 @@
   - 현재 상태 상세: [docs/website-current-state.md](docs/website-current-state.md)
 - 소스코드: `siml-09:/mnt/home3/yhgil99/etc/wkmd/web/` (연구실 서버 — 추후 이 레포 또는 별도 레포로 이관 검토)
 
+## 🤖 에이전트 워크스페이스 (선우님은 여기부터!)
+
+이 레포 자체가 **위캔드무드 전용 AI 작업 환경**입니다. 클론 + 설치만 하면 바로 동작:
+
+→ **[SETUP_GUIDE.md](SETUP_GUIDE.md)** 따라 설치 (Mac, 30분) → `claude` 실행 → `/setup-check`
+
+| 명령 | 기능 | 뒷받침 |
+|---|---|---|
+| `/trend` | 유튜브 패션 트렌드 스캔(한/미/일/프/영/이) → 급상승 채널 TOP10 → 소재 보드 | `scripts/trend_scan.py` + `scripts/fetch_subs.py`(자막) — API 키 불필요 |
+| `/content` | 소재 → 쓰레드/블로그/인스타 콘텐츠 (브랜드 톤) | `copywriter` 에이전트 + `prompts/content/` |
+| `/diagnosis` | 유료 외모진단서 제작 (첫 실행 = 기준 인터뷰) | `diagnosis-writer` + `brand/diagnosis-criteria.md` |
+| `/mbti SMTH` | 패션 MBTI 타입 콘텐츠 디벨롭 | `fashion-director` + 라이브 사이트 연동 |
+| `/review` | 후기 다듬기 · 스타일링 PDF 원고 | `review-assistant` + `prompts/review/` |
+| `/setup-check` | 환경 자가진단 | — |
+
+구성: `CLAUDE.md`(브랜드 두뇌) · `.claude/agents/` 전문 에이전트 5종 · `.claude/commands/` 워크플로 6종 · `brand/` 톤·서비스·진단기준 · `prompts/` 템플릿 · `scripts/` 수집 도구
+
 ## 이 레포의 역할
 
-1. **기획/설계 문서의 단일 진실 공급원** — 각 단계 상세 기획, 결정 사항, TODO
-2. **선우님과의 협업 보드** — 이슈/체크리스트로 진행 상황 공유 (선우님 GitHub 초대 예정)
-3. 추후 2~4단계의 **프롬프트 템플릿 / PDF 템플릿 / 파이프라인 스크립트** 저장소
+1. **에이전트 워크스페이스** — 위 표의 모든 기능이 클론 즉시 동작
+2. **기획/설계 문서의 단일 진실 공급원** — 각 단계 상세 기획, 결정 사항, TODO
+3. **선우님과의 협업 보드** — 이슈/체크리스트로 진행 상황 공유 (선우님 GitHub 초대 예정)
+4. 2~4단계의 **프롬프트 템플릿 / PDF 템플릿 / 파이프라인 스크립트** 저장소
 
 ## 역할 분담 원칙
 
