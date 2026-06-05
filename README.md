@@ -1,65 +1,104 @@
-# WKND MOOD × 영환 협업 프로젝트
+<div align="center">
 
-> 위캔드무드(WKND MOOD) — 남성 프리미엄 퍼스널 비주얼 컨설턴트 브랜드의
-> 웹사이트 · 퍼널 · 콘텐츠 자동화 · 리뷰 시스템 구축 프로젝트.
->
-> 작성 기준일: 2026-06-04 / 원본 태스크 목록: 박선우 (위캔드무드 대표)
+# ◆ WKNDMOOD
+
+**위캔드무드 AI 워크스페이스** — 남성 프리미엄 퍼스널 비주얼 컨설턴트 브랜드의
+트렌드 수집 · 콘텐츠 제작 · 외모진단 · 후기 시스템을 움직이는 에이전트 팀
+
+[웹사이트](https://wkmd.vercel.app) · [MBTI 테스트](https://wkmd.vercel.app/test) · [콘텐츠 편집(Studio)](https://wkmd.vercel.app/studio)
+
+</div>
 
 ---
 
-## 한눈에 보기
+## 이 레포는 무엇인가
 
-| 단계 | 내용 | 목표 기한 | 상태 | 문서 |
-|---|---|---|---|---|
-| **0-A** | AI 환경 세팅 (선우님 Claude 에이전트 구축) | 6/8 (일) | 🔜 진행 예정 | [docs/00-ai-setup.md](docs/00-ai-setup.md) |
-| **0-B** | 협업 준비물 (자료 .zip 등) | 6/8 | ⏳ 선우님 | [docs/materials-checklist.md](docs/materials-checklist.md) |
-| **1** | 웹사이트 B2B / B2C 분리 구조 **[최우선]** | 6/15 (일) | 🔜 | [docs/01-website-b2b-b2c.md](docs/01-website-b2b-b2c.md) |
-| **2** | 외모진단 · 패션MBTI 퍼널 | 6/22 (월) | 🔜 | [docs/02-diagnosis-funnel.md](docs/02-diagnosis-funnel.md) |
-| **3** | 콘텐츠 자동화 파이프라인 | 6/29 (월) | 🔜 | [docs/03-content-pipeline.md](docs/03-content-pipeline.md) |
-| **4** | 후기 · 리뷰 시스템 | 7/6 (월) | 🔜 | [docs/04-review-system.md](docs/04-review-system.md) |
-| **2차** | 역량 강화 (크롤링/PPT/프롬프트/사진보정) | 수시 | 🔜 | [docs/05-skills-track.md](docs/05-skills-track.md) |
+클론해서 `claude`를 실행하는 순간, **위캔드무드를 아는 Claude**가 됩니다.
 
-전체 일정/의존관계: **[ROADMAP.md](ROADMAP.md)**
+- 브랜드 톤·서비스·타깃·진단 기준이 주입된 **전문 에이전트 5명**
+- 워크플로 **명령어 7종** — 트렌드 스캔부터 진단서·유튜브 스크립트까지
+- 유튜브 6개국 실시간 수집기 (API 키·비용 0원)
+- 터미널 하단 **`◆ WKNDMOOD`** 브랜딩 상태줄 자동 적용
 
-## 이미 만들어진 것 (토대)
+> 📋 운영 현황판·상세 가이드·사용 시나리오 19종은 **노션 워크스페이스**에 있습니다 (팀 공유 링크 참조)
 
-- **데모 사이트 라이브**: https://wkmd.vercel.app — Next.js 16 + Sanity CMS, 45 라우트
-  - 홈 / 브랜드 / 컨설팅 / 포트폴리오 / FAQ / 문의 / **패션 MBTI 테스트**(12문항→16타입, /test)
-  - 거의 모든 사진·문구를 코드 수정 없이 https://wkmd.vercel.app/studio 에서 편집 가능
-  - 현재 상태 상세: [docs/website-current-state.md](docs/website-current-state.md)
-- 소스코드: `siml-09:/mnt/home3/yhgil99/etc/wkmd/web/` (연구실 서버 — 추후 이 레포 또는 별도 레포로 이관 검토)
+## 🚀 빠른 시작
 
-## 🤖 에이전트 워크스페이스 (선우님은 여기부터!)
+처음이라면 → **[SETUP_GUIDE.md](SETUP_GUIDE.md)** (Mac, 30분, 복붙만 하면 됨)
 
-이 레포 자체가 **위캔드무드 전용 AI 작업 환경**입니다. 클론 + 설치만 하면 바로 동작:
+이미 설치돼 있다면:
 
-→ **[SETUP_GUIDE.md](SETUP_GUIDE.md)** 따라 설치 (Mac, 30분) → `claude` 실행 → `/setup-check`
+```bash
+cd ~/wkndmood && claude
+```
 
-| 명령 | 기능 | 뒷받침 |
+## ⌨️ 명령어
+
+| 명령 | 하는 일 |
+|---|---|
+| `/trend` | 유튜브 6개국(한·미·일·프·영·이) 트렌드 스캔 → 급상승 채널 TOP10 → 소재 보드 10개 |
+| `/content` | 소재 → 쓰레드 / 블로그 / 인스타 / **유튜브 쇼츠·롱폼 스크립트** / 카페 글 |
+| `/diagnosis` | 유료 외모진단서 (첫 회 = 기준 인터뷰로 선우님 노하우 이식) |
+| `/mbti SMTH` | 패션 MBTI 16타입 콘텐츠 디벨롭 → Studio 반영 |
+| `/review` | 후기 요청 안내문 → 다듬기(카페 게시) → 스타일링 PDF 보상 |
+| `/exp` | 경험 에피소드 30초 기록 — 3질문 자동완성 → 모든 글의 재료로 자동 활용 |
+| `/setup-check` | 환경 자가진단 (뭔가 안 될 때 1순위) |
+
+명령어 없이 자연어로 말해도 됩니다 — *"동행쇼핑 끝난 고객에게 보낼 감사 카톡 문구"* 같은 것도 전부.
+
+## 🤖 에이전트 팀
+
+| 에이전트 | 전문 | 원칙 |
 |---|---|---|
-| `/trend` | 유튜브 패션 트렌드 스캔(한/미/일/프/영/이) → 급상승 채널 TOP10 → 소재 보드 | `scripts/trend_scan.py` + `scripts/fetch_subs.py`(자막) — API 키 불필요 |
-| `/content` | 소재 → 쓰레드/블로그/인스타 콘텐츠 (브랜드 톤) | `copywriter` 에이전트 + `prompts/content/` |
-| `/diagnosis` | 유료 외모진단서 제작 (첫 실행 = 기준 인터뷰) | `diagnosis-writer` + `brand/diagnosis-criteria.md` |
-| `/mbti SMTH` | 패션 MBTI 타입 콘텐츠 디벨롭 | `fashion-director` + 라이브 사이트 연동 |
-| `/review` | 후기 다듬기 · 스타일링 PDF 원고 | `review-assistant` + `prompts/review/` |
-| `/setup-check` | 환경 자가진단 | — |
+| `fashion-director` | 패션 판단 전반 (체형·컬러·아이템·트렌드 해석) | 모든 제안에 "왜" 1줄, 한국 실구매 기준 |
+| `copywriter` | 브랜드 톤 글쓰기 (전 채널) | tone.md 최우선 · 과장/의료표현/AI티 금지 · 경험 은행 우선 참조 |
+| `trend-analyst` | 트렌드 데이터 → 소재 추출 | 광고 필터 → velocity 분석 → 교차국가 메가트렌드 승격 |
+| `diagnosis-writer` | 외모진단서 (7섹션 고정 템플릿) | 기준 없으면 진단 거부(인터뷰 먼저) · 좋은 점 먼저 |
+| `review-assistant` | 후기·스타일링 PDF | 고객 말투 보존 · 구매템만으로 조합 |
 
-구성: `CLAUDE.md`(브랜드 두뇌) · `.claude/agents/` 전문 에이전트 5종 · `.claude/commands/` 워크플로 6종 · `brand/` 톤·서비스·진단기준 · `prompts/` 템플릿 · `scripts/` 수집 도구
+작업 내용에 따라 자동 투입됩니다 — 직접 부를 필요 없음.
 
-## 이 레포의 역할
+## 📦 구조
 
-1. **에이전트 워크스페이스** — 위 표의 모든 기능이 클론 즉시 동작
-2. **기획/설계 문서의 단일 진실 공급원** — 각 단계 상세 기획, 결정 사항, TODO
-3. **선우님과의 협업 보드** — 이슈/체크리스트로 진행 상황 공유 (선우님 GitHub 초대 예정)
-4. 2~4단계의 **프롬프트 템플릿 / PDF 템플릿 / 파이프라인 스크립트** 저장소
+```
+wkmd/
+├── CLAUDE.md             # 브랜드 두뇌 — Claude가 항상 읽는 규칙
+├── .claude/
+│   ├── agents/           # 전문 에이전트 5명
+│   ├── commands/         # 명령어 7종 (워크플로 절차서)
+│   ├── statusline.sh     # ◆ WKNDMOOD 터미널 브랜딩
+│   └── settings.json     # 권한 + 상태줄 설정 (클론하면 자동 적용)
+├── brand/                # 톤 · 서비스 · 타깃 · 진단 기준 · 경험 은행 · 트렌드 키워드
+├── prompts/              # 채널 포맷(쓰레드/블로그/인스타/유튜브) · 진단서 · 후기 템플릿
+├── scripts/
+│   ├── setup.sh          # Mac 원샷 설치
+│   ├── trend_scan.py     # 유튜브 6개국 수집 (velocity 기반)
+│   └── fetch_subs.py     # 영상 자막 → 분석용 텍스트
+├── docs/                 # 협업 기획 문서 (0~4단계 + 현황)
+├── data/    (로컬 전용)   # 수집 데이터 · 고객 자료 — git 제외
+└── outputs/ (로컬 전용)   # 콘텐츠 · 진단서 · 후기 산출물 — git 제외
+```
 
-## 역할 분담 원칙
+## 🧠 동작 원리 (요약)
 
-- **영환**: 기술 구축 (사이트/퍼널/파이프라인/템플릿), AI 세팅, 방법 안내
-- **선우**: 콘텐츠 방향성·문구 확정, 자료 전달, 브랜드 톤 결정, 채널 운영, 고객 응대
-- 기한은 제안값 — 영환 평일 연구 일정에 맞춰 조정 가능
+1. **컨텍스트 주입** — `CLAUDE.md` + `brand/`가 모든 작업의 출발점. 같은 AI라도 브랜드를 알고 쓰는 것이 품질의 80%.
+2. **경험 은행** — `/exp`로 쌓인 실제 에피소드가 글마다 자동 결합 → "AI 글" 티가 안 나는 이유.
+3. **질문 → 결과** — 모든 에이전트는 부족한 정보를 먼저 1~3개 질문하고, 그 다음 완성물을 내놓습니다.
+4. **재창작 룰** — 트렌드 영상에선 주제만 차용, 표현 복제 금지 (저작권 안전).
 
-## 운영 메모
+## 🔐 보안 수칙
 
-- ⚠️ 이 레포는 **private** — 사업 정보(가격 전략·퍼널 설계·고객 플로우) 포함
-- 비밀키(.secretkeys, API 토큰)는 **절대 커밋 금지** (.gitignore 처리됨)
+- `.secretkeys`, `.env*` — **절대 커밋 금지** (gitignore + Claude 읽기 차단 처리됨)
+- 고객 사진·연락처는 `data/` 로컬 전용 — git에 올라가지 않음, 진단 후 파기
+- Sanity Studio는 무료 플랜 — **Upgrade 버튼 클릭 금지**
+
+## 협업
+
+| 역할 | 담당 |
+|---|---|
+| 운영 주체 (콘텐츠·진단·카페·검수) | 박선우 대표 — Claude와 함께 |
+| 시스템·인프라 구축 | 영환 |
+
+채널 구도: **웹사이트 = B2B** (포트폴리오·제휴) / **네이버 카페 = B2C 본진** (커뮤니티·후기·전자책)
+
+— *Built with Claude Code · branded as WKNDMOOD*
