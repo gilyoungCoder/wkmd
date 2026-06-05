@@ -7,7 +7,7 @@
 
 - [x] VSCode 설치 (완료)
 - [x] Claude 계정 — **MAX 구독** (완료!)
-- [ ] GitHub 계정(`wkndmood`)으로 **초대 2건 수락** — github.com 알림 또는 메일함에서 `wkmd`, `wkmd-web` Accept
+- GitHub 로그인은 **지금은 불필요** (설치 기간 동안 레포를 공개로 열어둠 — 로그인 없이 받아짐). 초대 수락은 나중에 비공개 전환 후를 위해 해두면 좋음.
 
 ## 1. 터미널 열기
 
@@ -29,10 +29,10 @@ brew --version
 ```
 → `Homebrew 4.x` 처럼 나오면 성공
 
-## 3. Git + GitHub CLI 설치
+## 3. Git 설치
 
 ```bash
-brew install git gh
+brew install git
 ```
 
 ## 4. Node.js 설치 (npm 포함)
@@ -68,15 +68,10 @@ omc setup
 - `omc setup` 중 질문이 나오면 기본값(Enter)으로 진행하면 됩니다
 - ※ 내부 엔진은 OMC지만, 우리 프로젝트 안에서는 화면 하단 브랜딩이 **WKNDMOOD**로 표시됩니다 (8단계에서 확인)
 
-## 7. GitHub 로그인 + 위캔드무드 레포 클론 ⭐ 핵심
+## 7. 위캔드무드 레포 클론 ⭐ 핵심 (로그인 불필요)
 
 ```bash
-gh auth login
-```
-질문 순서대로: `GitHub.com` → `HTTPS` → `Login with a web browser` → Enter → 브라우저에서 코드 입력
-
-```bash
-gh repo clone gilyoungCoder/wkmd ~/wkndmood
+git clone https://github.com/gilyoungCoder/wkmd.git ~/wkndmood
 cd ~/wkndmood
 bash scripts/setup.sh
 ```
@@ -114,7 +109,7 @@ claude
 |---|---|
 | `command not found: brew` | 2단계의 eval 2줄 실행 누락 — Homebrew 설치 마지막 화면 참조 |
 | `command not found: claude` | 터미널 껐다 켜기 → 그래도 안 되면 5단계 재실행 |
-| 클론할 때 404/권한 오류 | GitHub 초대 수락 안 됨 (0단계) |
+| 클론할 때 404/권한 오류 | 레포가 비공개로 돌아간 경우 — 영환에게 연락 (또는 GitHub 초대 수락 후 로그인 클론) |
 | 하단에 WKNDMOOD 안 뜸 | `cd ~/wkndmood` 안에서 `claude`를 실행했는지 확인 (프로젝트 폴더 안에서만 적용) |
 | 그 외 | Claude에게 그대로 물어보기 → 안 되면 `/setup-check` 결과 캡처 → 영환 |
 
