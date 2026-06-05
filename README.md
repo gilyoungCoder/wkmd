@@ -26,10 +26,12 @@
 
 처음이라면 → **[SETUP_GUIDE.md](SETUP_GUIDE.md)** (Mac, 30분, 복붙만 하면 됨)
 
-이미 설치돼 있다면:
+이미 설치돼 있다면 — 어디서든 한 단어:
 
 ```bash
-cd ~/wkndmood && claude
+wknd              # WKND MOOD 로고와 함께 시작 (setup.sh가 user scope로 설치)
+wknd --madmax     # 풀 자율 모드 (권한 질문 생략)
+wknd update       # 최신 버전 받기
 ```
 
 ## ⌨️ 명령어

@@ -1,0 +1,57 @@
+#!/bin/bash
+# ◆ WKNDMOOD 런처 — 어디서든 `wknd` 한 단어로 시작
+#
+#   wknd                 평소 실행 (자동으로 워크스페이스 폴더에서 시작)
+#   wknd --madmax        풀 자율 모드 — 권한 질문 생략, 전속력 🏎
+#   wknd update          최신 버전 받기 (git pull)
+#   wknd "/trend kr"     시작하자마자 해당 명령 실행
+#   wknd help            도움말
+
+WKND_HOME="${WKND_HOME:-$HOME/wkndmood}"
+GOLD='\033[1;38;5;220m'; WHITE='\033[1;37m'; DIM='\033[2m'; NC='\033[0m'
+
+logo() {
+  printf "${GOLD}"
+  printf ' ██╗    ██╗██╗  ██╗███╗   ██╗██████╗ \n'
+  printf ' ██║    ██║██║ ██╔╝████╗  ██║██╔══██╗\n'
+  printf ' ██║ █╗ ██║█████╔╝ ██╔██╗ ██║██║  ██║\n'
+  printf ' ██║███╗██║██╔═██╗ ██║╚██╗██║██║  ██║\n'
+  printf ' ╚███╔███╔╝██║  ██╗██║ ╚████║██████╔╝\n'
+  printf '  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ '
+  printf "${NC}${WHITE}M O O D${NC}\n"
+  printf "${DIM} 퍼스널 비주얼 컨설턴트 — AI 워크스페이스${NC}\n\n"
+}
+
+if [ ! -d "$WKND_HOME" ]; then
+  printf "wkndmood 폴더(%s)가 없습니다. SETUP_GUIDE.md 7단계(클론)를 먼저 진행해주세요.\n" "$WKND_HOME"
+  exit 1
+fi
+cd "$WKND_HOME" || exit 1
+
+case "${1:-}" in
+  update)
+    printf "${GOLD}◆ WKND${NC}${WHITE} MOOD${NC} 업데이트 중...\n"
+    git pull --ff-only && printf "${GOLD}✓${NC} 최신 버전입니다\n"
+    exit $? ;;
+  help|--help|-h)
+    logo
+    printf "  wknd                평소 실행\n"
+    printf "  wknd --madmax       풀 자율 모드 (권한 질문 생략 — 익숙해진 뒤 추천)\n"
+    printf "  wknd update         최신 버전 받기\n"
+    printf "  wknd \"/trend kr\"    시작하자마자 해당 명령 실행\n"
+    exit 0 ;;
+esac
+
+ARGS=()
+for a in "$@"; do
+  if [ "$a" = "--madmax" ]; then
+    MADMAX=1
+    ARGS+=(--dangerously-skip-permissions)
+  else
+    ARGS+=("$a")
+  fi
+done
+
+logo
+[ -n "${MADMAX:-}" ] && printf "${GOLD}MADMAX MODE${NC} ${DIM}— 권한 질문 없이 전속력으로 달립니다${NC} 🏎\n\n"
+exec claude "${ARGS[@]}"

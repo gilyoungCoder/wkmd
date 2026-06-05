@@ -48,8 +48,22 @@ fi
 
 # 4. 작업 폴더 준비
 cd "$(dirname "$0")/.." || exit 1
+ROOT_DIR="$(pwd)"
 mkdir -p data/trends data/subs outputs/content outputs/diagnosis outputs/review outputs/trends
 ok "작업 폴더 (data/, outputs/)"
+
+# 4.5 wknd 런처 설치 (user scope — 어디서든 'wknd' 한 단어로 시작)
+chmod +x "$ROOT_DIR/bin/wknd"
+RC_FILE="$HOME/.zshrc"
+if ! grep -q "WKNDMOOD launcher" "$RC_FILE" 2>/dev/null; then
+  {
+    printf '\n# WKNDMOOD launcher\n'
+    printf 'wknd() { WKND_HOME="%s" bash "%s/bin/wknd" "$@"; }\n' "$ROOT_DIR" "$ROOT_DIR"
+  } >> "$RC_FILE"
+  ok "wknd 명령 설치 (새 터미널부터: 어디서든 'wknd' / 'wknd --madmax')"
+else
+  ok "wknd 명령 (이미 설치됨)"
+fi
 
 # 5. 빠른 자가진단
 echo ""
